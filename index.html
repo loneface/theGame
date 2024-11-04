@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            color: white;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            width: 300px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        input[type="number"] {
+            width: 80%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            color: white;
+            background-color: #ff5722;
+            transition: background 0.3s;
+        }
+        button:hover,
+        button:active {
+            background-color: #e64a19;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Men o'ylagan sonni toping</h1>
+        <input type="number" id="guess" placeholder="1 dan 10 gacha son kiriting" min="1" max="10">
+        <button onclick="checkGuess()">Topish</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const secretNumber = Math.floor(Math.random() * 10) + 1;
+        
+        function checkGuess() {
+            const guess = parseInt(document.getElementById('guess').value);
+            const result = document.getElementById('result');
+
+            if (!guess || guess < 1 || guess > 10) {
+                result.textContent = "1 dan 10 gacha son kiriting.";
+                return;
+            }
+
+            if (guess < secretNumber) {
+                result.textContent = "Topa olmadingiz, men o'ylagan son siz aytgan sondan kattroq.";
+            } else if (guess > secretNumber) {
+                result.textContent = "Topa olmadingiz, men o'ylagan son siz aytgan sondan kichik.";
+            } else {
+                result.textContent = "Ura siz topdingiz, yutdiz!";
+            }
+        }
+    </script>
+</body>
+</html>
